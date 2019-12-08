@@ -1,0 +1,63 @@
+﻿<br />
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Add New Employe</h4>
+
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="addEmployeeForm" ng-submit="createEmployee(employee)" novalidate>
+                       
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Name</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="employee.EmpName" name="name" ng-maxlength="32" required />
+                    <span class="text-danger" ng-show="(addEmployeeForm.name.$touched||addEmployeeForm.name.$dirty) && addEmployeeForm.name.$invalid">
+                        <span ng-show="addEmployeeForm.name.$error.required">Name is required.</span>
+                        <span ng-show="addEmployeeForm.name.$error.maxlength">Name must be less then or equal to 32.</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Email</label>
+                <div class="col-lg-10">
+                    <input type="email" class="form-control" name="mail" ng-model="employee.Email" ng-maxlength="50" required />
+                    <span class="text-danger" ng-show="(addEmployeeForm.mail.$touched||addEmployeeForm.mail.$dirty) && addEmployeeForm.mail.$invalid">
+                        <span ng-show="addEmployeeForm.mail.$error.required">Email is required.</span>
+                        <span ng-show="addEmployeeForm.mail.$error.email">Invalid email address.</span>
+                        <span ng-show="addEmployeeForm.mail.$error.maxlength">Email must be less then or equal to 50.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Address</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" ng-model="employee.Address" name="address" ng-maxlength="50" ng-minlength="5" />
+                    <span class="text-danger" ng-show="addEmployeeForm.address.$dirty && (addEmployeeForm.address.$minlength||addEmployeeForm.address.$maxlength)">
+                        Address must be in range 5 to 500.
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Phone</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" name="phone" ng-model="employee.Phone" ng-maxlength="15" required />
+                    <span class="text-danger" ng-show="(addEmployeeForm.phone.$touched||addEmployeeForm.phone.$dirty)&&addEmployeeForm.phone.$invalid">
+                        <span ng-show="addEmployeeForm.phone.$error.required">Phone is required.</span>
+                        <span ng-show="addEmployeeForm.phone.$error.maxlength">Phone must be less then or equal to 15.</span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="submit" class="btn btn-primary" value="Save" ng-disabled="addEmployeeForm.$invalid" />
+                    <a href="#/" class="btn btn-default">Back To List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

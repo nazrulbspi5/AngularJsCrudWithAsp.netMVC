@@ -1,0 +1,68 @@
+﻿<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <a href="#/AddEmployee" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add New Employee</a>
+            <a href="" class="btn btn-danger" ng-click="DeleteEmployee(employees)"><i class="fas fa-minus-circle"></i> Delete</a>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+        <h4>Manage Employee</h4>
+
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+
+                    <th> <input type="checkbox" ng-model="all" /></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in employees | limitTo:itemPerPage:(currentPage-1)*itemPerPage">
+
+                    <td><input type="checkbox" id="chkId" ng-true-value="{{data.EmpID}}" ng-false-value="''" ng-checked="all" ng-model="data.selected" /></td>
+                    <td>{{data.EmpName}}</td>
+                    <td>{{data.Email}}</td>
+                    <td>{{data.Address}}</td>
+                    <td>{{data.Phone}}</td>
+                    <td>
+                        <a href="#/EditEmployee/{{data.EmpID}}" class="btn btn-success">Edit</a>
+                        <a href="" ng-click="deleteEmployee(data.EmpID)" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <tr ng-if="!employees|| employees.length==0">
+                    <td colspan="6" style="text-align:center">
+                        No Data Found!
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pull-left">
+
+                    <br />
+                    <span ng-if="employees.length>1">Showing {{(currentPage-1)*itemPerPage+1}} To {{(currentPage*itemPerPage)>employees.length?employees.length:(currentPage*itemPerPage)}} out of {{employees.length}} entries</span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="pull-right">
+                    <br />
+                    <ul uib-pagination total-items="employees.length" ng-model="currentPage" items-per-page="itemPerPage" max-size="5" num-pages="numPages" boundary-link-numbers="true"></ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
